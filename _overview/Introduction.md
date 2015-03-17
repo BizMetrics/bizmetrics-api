@@ -5,11 +5,11 @@ anchor: introduction
 
 # Introduction
 
-This website contains documentation of [BizMetrics'](https://bizmetrics.io) API.
+This website contains documentation of [BizMetrics'](https://www.bizmetrics.io) API.
 
 Detailed documentation can be found in the [Reference Documentation](/reference) section.
 
-If you want to use the API, register [here](http://www.bizmetrics.io/#subscribe) and send an email to info@bizmetrics.io 
+If you want to use the API, register [here](https://www.bizmetrics.io/#subscribe) and send an email to info@bizmetrics.io 
 
 ## Libraries
 
