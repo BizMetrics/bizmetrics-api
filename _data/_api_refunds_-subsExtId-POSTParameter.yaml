@@ -1,0 +1,8 @@
+ fieldsDescription:
+    amount: "in cents, *required"
+    date: "the date when the refund was done *required"
+ example: > 
+     {
+        amount: "1000",
+        date: 1426536639987,
+     }

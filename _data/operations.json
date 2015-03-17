@@ -1,0 +1,129 @@
+[ {
+  "operations" : {
+    "classname" : "ApiclientsApi",
+    "operation" : [ {
+      "hasConsumes" : true,
+      "hasProduces" : true,
+      "hasParams" : true,
+      "returnSimpleType" : true,
+      "path" : "/api/clients",
+      "operationId" : "POST_controllers_api_Clients$_create",
+      "returnType" : "void",
+      "httpMethod" : "POST",
+      "returnBaseType" : "void",
+      "summary" : "It creates a client",
+      "notes" : "Notes example",
+      "baseName" : "Apiclients",
+      "defaultResponse" : "null",
+      "consumes" : [ {
+        "mediaType" : "application/json"
+      } ],
+      "produces" : [ {
+        "mediaType" : "application/json"
+      } ],
+      "bodyParam" : {
+        "isBodyParam" : true,
+        "baseName" : "",
+        "paramName" : "",
+        "dataType" : "Client",
+        "description" : "The client representation in JSON of the client to be created",
+        "required" : true
+      },
+      "allParams" : [ {
+        "isBodyParam" : true,
+        "baseName" : "",
+        "paramName" : "",
+        "dataType" : "Client",
+        "description" : "The client representation in JSON of the client to be created",
+        "required" : true
+      } ],
+      "bodyParams" : [ {
+        "isBodyParam" : true,
+        "baseName" : "",
+        "paramName" : "",
+        "dataType" : "Client",
+        "description" : "The client representation in JSON of the client to be created",
+        "required" : true
+      } ],
+      "pathParams" : [ ],
+      "queryParams" : [ ],
+      "headerParams" : [ ],
+      "formParams" : [ ],
+      "tags" : [ "Apiclients" ],
+      "responses" : [ {
+        "code" : "409",
+        "message" : "Error: Another client with that ID already exists"
+      } ],
+      "responseHeaders" : [ ],
+      "imports" : [ "void", "Client" ],
+      "nickname" : "POST_controllers_api_Clients$_create"
+    }, {
+      "hasConsumes" : true,
+      "hasProduces" : true,
+      "hasParams" : true,
+      "returnSimpleType" : true,
+      "path" : "/api/clients/jsonArray",
+      "operationId" : "POST_controllers_api_Clients$_createFromArray",
+      "returnType" : "void",
+      "httpMethod" : "POST",
+      "returnBaseType" : "void",
+      "summary" : "It creates multiple new Client from a JSON array",
+      "notes" : "",
+      "baseName" : "Apiclients",
+      "defaultResponse" : "null",
+      "consumes" : [ {
+        "mediaType" : "application/json"
+      } ],
+      "produces" : [ {
+        "mediaType" : "application/json"
+      } ],
+      "bodyParam" : {
+        "isBodyParam" : true,
+        "baseName" : "",
+        "paramName" : "",
+        "dataType" : "Client",
+        "description" : "The client representation in JSON of the client to be created",
+        "required" : true
+      },
+      "allParams" : [ {
+        "isBodyParam" : true,
+        "baseName" : "",
+        "paramName" : "",
+        "dataType" : "Client",
+        "description" : "The client representation in JSON of the client to be created",
+        "required" : true
+      } ],
+      "bodyParams" : [ {
+        "isBodyParam" : true,
+        "baseName" : "",
+        "paramName" : "",
+        "dataType" : "Client",
+        "description" : "The client representation in JSON of the client to be created",
+        "required" : true
+      } ],
+      "pathParams" : [ ],
+      "queryParams" : [ ],
+      "headerParams" : [ ],
+      "formParams" : [ ],
+      "tags" : [ "Apiclients" ],
+      "responses" : [ {
+        "code" : "409",
+        "message" : "Error: Another client with that ID already exists, the ids and ExtIds of those will be listed"
+      } ],
+      "responseHeaders" : [ ],
+      "imports" : [ "void", "Client" ],
+      "nickname" : "POST_controllers_api_Clients$_createFromArray"
+    } ]
+  },
+  "package" : "",
+  "imports" : [ {
+    "import" : "void"
+  }, {
+    "import" : "Client"
+  } ],
+  "basePath" : "http://localhost:9000/",
+  "modelPackage" : "",
+  "classname" : "ApiclientsApi",
+  "classVarName" : "apiclients",
+  "baseName" : "Apiclients"
+} ]

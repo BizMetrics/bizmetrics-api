@@ -1,0 +1,23 @@
+ fieldsDescription:
+     name: optional
+     email: optional
+     description: optional
+     extId: must be given for future reference *required
+     ext_creation_instant: when it was created (client's reference)
+     ext_last_modified_instant: when it was last modified (optional)
+ example: > 
+     [{
+        name: "John doe"
+        email: "jdoe@gmail.com"
+        description: "nice guy"
+        extId: "client#151512"
+        ext_creation_instant: 1426536639795
+        ext_last_modified_instant: 1426536635592
+     },{
+        name: "Alice"
+        email: "asinjer@nwhr.com"
+        description: ""
+        extId: "client#113010"
+        ext_creation_instant: 1426536639795
+        ext_last_modified_instant: 1426536635592
+     }]

@@ -1,0 +1,123 @@
+---
+title: BizMetrics | API Documentation
+---
+{% include head.html title=page.title%}
+
+
+<body data-spy="scroll" data-target=".bs-docs-sidebar">
+
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+				</a> <a class="brand" href="https://www.bizmetrics.io">BizMetrics</a> <!-- TODO logo -->
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li><a href="/">Home</a></li>
+						<li class="active"><a href="#">Reference Documentation</a></li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span3 bs-docs-sidebar">
+				<ul class="nav nav-list bs-docs-sidenav" data-spy="affix">
+					{% for referenceArticle in site.referenceArticles %}
+					<li><a href="#{{referenceArticle.anchor}}">{{referenceArticle.title}}<i
+							class="icon-chevron-right"></i>
+					</a></li>
+					{% endfor %}
+				{% for api in site.data.rootSpec.apis %}
+				  {% capture apiPath %}{{ api.path | replace:'/','_' }}{% endcapture %}
+				  {% capture apiPathTranslation %}{{site.data.apiTranslation[apiPath]}}{% endcapture %}
+				  
+				  
+					<li><a href="#{{apiPath}}">
+					{% if apiPathTranslation != nil and apiPathTranslation != "" %}
+					 {{apiPathTranslation}}
+					{% else %}
+					 {{apiPath}}
+					{% endif %}
+					 <i class="icon-chevron-right"></i>
+					</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			<!--/span-->
+			<div class="span9">
+			{% for referenceArticle in site.referenceArticles %}
+				<div class="row-fluid">
+					<section id="{{referenceArticle.anchor}}">
+						{{referenceArticle.output}}
+					</section>
+				</div>
+				<hr/>
+				{% endfor %}
+			
+
+				{% for api in site.data.rootSpec.apis %}
+				  
+				  {% capture apiPath %}{{ api.path | replace:'/','_' }}{% endcapture %}
+				  {% capture apiDescription %}{{ api.description}}{% endcapture %}
+				  {% capture apiPathFile %}_referenceArticles/{{apiPath | remove_first:'_'}}.md{% endcapture %}
+				  
+				  
+				  {% for referenceArticle in site.collections.referenceArticles.docs %}
+				  	{% if referenceArticle.relative_path == apiPathFile %}
+				  	 {% assign useCustomFile = true %}
+				  	{% else %}
+				  	 {% assign useCustomFile = false %}
+				  	{% endif %}
+				  {% endfor %}
+				  
+					{% for static_file in site.static_files %}
+	    				{% if static_file.path == apiPath %}
+	        				{% assign useCustom = true %}
+	        			{% else %}
+	        				{% assign useCustom = false %}
+	    				{% endif %}
+					{% endfor %}
+				<div class="row-fluid">
+					<section id="{{apiPath}}">
+						<!--  <p>use custom: {{useCustom}} apiPathFile: {{apiPathFile}}</p> -->
+						 {% capture apiPathTranslation %}{{site.data.apiTranslation[apiPath]}}{% endcapture %}
+						 {% include apiDefault.html apiPath=apiPath apiDesc=apiDescription apiName=apiPathTranslation %}
+					</section>
+				</div>
+				<hr/>
+				{% endfor %}
+	
+			</div>
+			<!--/span-->
+		</div>
+		<!--/row-->
+
+{% include footer.html %}
+	
+	</div>
+	<!--/.fluid-container-->
+
+	<!-- Le javascript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="/js/jquery.js"></script>
+	<script src="/js/bootstrap.js"></script>
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54773978-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>

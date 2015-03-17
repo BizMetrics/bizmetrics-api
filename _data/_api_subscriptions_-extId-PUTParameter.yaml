@@ -1,0 +1,10 @@
+ fieldsDescription:
+    status: "the new status - *required "
+    date: " UTC date of when it happened *required"
+    force: " boolean - it may force the transition to take place *optional"
+ example: > 
+     {
+        status: "INACTIVE",
+        date: 1426536639987,
+        force: false
+     }
