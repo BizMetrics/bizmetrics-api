@@ -1,21 +1,21 @@
 [
 	{
 		"operations":{
-			"classname":"ApiclientsApi",
+			"classname":"ApiplansApi",
 			"operation":[
 				{
 					"hasConsumes":true,
 					"hasProduces":true,
 					"hasParams":true,
 					"returnSimpleType":true,
-					"path":"/api/clients",
-					"operationId":"POST_controllers_api_Clients$_create",
-					"returnType":"void",
+					"path":"/api/plans",
+					"operationId":"POST_controllers_api_Plans$_create",
+					"returnType":"Void",
 					"httpMethod":"POST",
-					"returnBaseType":"void",
-					"summary":"It creates a client",
-					"notes":"Notes example",
-					"baseName":"Apiclients",
+					"returnBaseType":"Void",
+					"summary":"This method creates a new Plan",
+					"notes":"",
+					"baseName":"Apiplans",
 					"defaultResponse":"null",
 					"consumes":[
 						{
@@ -31,8 +31,8 @@
 						"isBodyParam":true,
 						"baseName":"",
 						"paramName":"",
-						"dataType":"Client",
-						"description":"The client representation in JSON of the client to be created",
+						"dataType":"Plan",
+						"description":"The plan representation in JSON of the plan to be created",
 						"required":true
 					},
 					"allParams":[
@@ -40,8 +40,8 @@
 							"isBodyParam":true,
 							"baseName":"",
 							"paramName":"",
-							"dataType":"Client",
-							"description":"The client representation in JSON of the client to be created",
+							"dataType":"Plan",
+							"description":"The plan representation in JSON of the plan to be created",
 							"required":true
 						}
 					],
@@ -50,8 +50,8 @@
 							"isBodyParam":true,
 							"baseName":"",
 							"paramName":"",
-							"dataType":"Client",
-							"description":"The client representation in JSON of the client to be created",
+							"dataType":"Plan",
+							"description":"The plan representation in JSON of the plan to be created",
 							"required":true
 						}
 					],
@@ -68,34 +68,136 @@
 						
 					],
 					"tags":[
-						"Apiclients"
+						"Apiplans"
 					],
 					"responses":[
 						{
-							"code":"409",
-							"message":"Error: Another client with that ID already exists"
+							"code":"400",
+							"message":"Error: If an error occurs. The reason/cause(s) should be stated in the response"
 						}
 					],
 					"responseHeaders":[
 						
 					],
 					"imports":[
-						"void",
-						"Client"
+						"Plan"
 					],
-					"nickname":"POST_controllers_api_Clients$_create"
+					"nickname":"POST_controllers_api_Plans$_create"
 				},
 				{
 					"hasConsumes":true,
 					"hasProduces":true,
 					"hasParams":true,
 					"returnSimpleType":true,
-					"path":"/api/clients/jsonArray",
-					"operationId":"POST_controllers_api_Clients$_createFromArray",
-					"returnType":"void",
+					"path":"/api/plans/jsonArray",
+					"operationId":"POST_controllers_api_Plans$_createFromArray",
+					"returnType":"Void",
 					"httpMethod":"POST",
-					"returnBaseType":"void",
-					"summary":"It creates multiple new Client from a JSON array",
+					"returnBaseType":"Void",
+					"summary":"This method creates multiple new Plans in a batch",
+					"notes":"",
+					"baseName":"Apiplans",
+					"defaultResponse":"null",
+					"consumes":[
+						{
+							"mediaType":"application/json"
+						}
+					],
+					"produces":[
+						{
+							"mediaType":"application/json"
+						}
+					],
+					"bodyParam":{
+						"isBodyParam":true,
+						"baseName":"",
+						"paramName":"",
+						"dataType":"Plan",
+						"description":"The plan representation in JSON of the plan to be created",
+						"required":true
+					},
+					"allParams":[
+						{
+							"isBodyParam":true,
+							"baseName":"",
+							"paramName":"",
+							"dataType":"Plan",
+							"description":"The plan representation in JSON of the plan to be created",
+							"required":true
+						}
+					],
+					"bodyParams":[
+						{
+							"isBodyParam":true,
+							"baseName":"",
+							"paramName":"",
+							"dataType":"Plan",
+							"description":"The plan representation in JSON of the plan to be created",
+							"required":true
+						}
+					],
+					"pathParams":[
+						
+					],
+					"queryParams":[
+						
+					],
+					"headerParams":[
+						
+					],
+					"formParams":[
+						
+					],
+					"tags":[
+						"Apiplans"
+					],
+					"responses":[
+						{
+							"code":"400",
+							"message":"Error: If an error occurs. The reason/cause(s) should be stated in the response"
+						}
+					],
+					"responseHeaders":[
+						
+					],
+					"imports":[
+						"Plan"
+					],
+					"nickname":"POST_controllers_api_Plans$_createFromArray"
+				}
+			]
+		},
+		"package":"io.swagger.client.api",
+		"imports":[
+			{
+				"import":"io.swagger.client.model.Plan"
+			}
+		],
+		"basePath":"http://localhost:9000/",
+		"modelPackage":"io.swagger.client.model",
+		"artifactVersion":"1.0.0",
+		"classname":"ApiplansApi",
+		"groupId":"io.swagger",
+		"invokerPackage":"io.swagger.client",
+		"artifactId":"swagger-client",
+		"classVarName":"apiplans",
+		"baseName":"Apiplans"
+	},
+	{
+		"operations":{
+			"classname":"ApiclientsApi",
+			"operation":[
+				{
+					"hasConsumes":true,
+					"hasProduces":true,
+					"hasParams":true,
+					"returnSimpleType":true,
+					"path":"/api/clients",
+					"operationId":"POST_controllers_api_Clients$_create",
+					"returnType":"Void",
+					"httpMethod":"POST",
+					"returnBaseType":"Void",
+					"summary":"This method creates a new Client",
 					"notes":"",
 					"baseName":"Apiclients",
 					"defaultResponse":"null",
@@ -154,34 +256,405 @@
 					],
 					"responses":[
 						{
-							"code":"409",
-							"message":"Error: Another client with that ID already exists, the ids and ExtIds of those will be listed"
+							"code":"400",
+							"message":"Error: If an error occurs. The reason/cause(s) should be stated in the response"
 						}
 					],
 					"responseHeaders":[
 						
 					],
 					"imports":[
-						"void",
+						"Client"
+					],
+					"nickname":"POST_controllers_api_Clients$_create"
+				},
+				{
+					"hasConsumes":true,
+					"hasProduces":true,
+					"hasParams":true,
+					"returnSimpleType":true,
+					"path":"/api/clients/jsonArray",
+					"operationId":"POST_controllers_api_Clients$_createFromArray",
+					"returnType":"Void",
+					"httpMethod":"POST",
+					"returnBaseType":"Void",
+					"summary":"It creates multiple new Clients from a JSON array",
+					"notes":"",
+					"baseName":"Apiclients",
+					"defaultResponse":"null",
+					"consumes":[
+						{
+							"mediaType":"application/json"
+						}
+					],
+					"produces":[
+						{
+							"mediaType":"application/json"
+						}
+					],
+					"bodyParam":{
+						"isBodyParam":true,
+						"baseName":"",
+						"paramName":"",
+						"dataType":"Client",
+						"description":"The client representation in JSON of the client to be created",
+						"required":true
+					},
+					"allParams":[
+						{
+							"isBodyParam":true,
+							"baseName":"",
+							"paramName":"",
+							"dataType":"Client",
+							"description":"The client representation in JSON of the client to be created",
+							"required":true
+						}
+					],
+					"bodyParams":[
+						{
+							"isBodyParam":true,
+							"baseName":"",
+							"paramName":"",
+							"dataType":"Client",
+							"description":"The client representation in JSON of the client to be created",
+							"required":true
+						}
+					],
+					"pathParams":[
+						
+					],
+					"queryParams":[
+						
+					],
+					"headerParams":[
+						
+					],
+					"formParams":[
+						
+					],
+					"tags":[
+						"Apiclients"
+					],
+					"responses":[
+						{
+							"code":"400",
+							"message":"Error: If an error occurs. The reason/cause(s) should be stated in the response"
+						}
+					],
+					"responseHeaders":[
+						
+					],
+					"imports":[
 						"Client"
 					],
 					"nickname":"POST_controllers_api_Clients$_createFromArray"
 				}
 			]
 		},
-		"package":"",
+		"package":"io.swagger.client.api",
 		"imports":[
 			{
-				"import":"void"
-			},
-			{
-				"import":"Client"
+				"import":"io.swagger.client.model.Client"
 			}
 		],
 		"basePath":"http://localhost:9000/",
-		"modelPackage":"",
+		"modelPackage":"io.swagger.client.model",
+		"artifactVersion":"1.0.0",
 		"classname":"ApiclientsApi",
+		"groupId":"io.swagger",
+		"invokerPackage":"io.swagger.client",
+		"artifactId":"swagger-client",
 		"classVarName":"apiclients",
 		"baseName":"Apiclients"
+	},
+	{
+		"operations":{
+			"classname":"ApirefundsApi",
+			"operation":[
+				{
+					"hasConsumes":true,
+					"hasProduces":true,
+					"hasParams":true,
+					"returnSimpleType":true,
+					"path":"/api/refunds/-subsExtId-",
+					"operationId":"POST_controllers_api_Refunds$_createRefund",
+					"returnType":"Void",
+					"httpMethod":"POST",
+					"returnBaseType":"Void",
+					"summary":"In this method, one can create a refund for an existing Subscription",
+					"notes":"",
+					"baseName":"Apirefunds",
+					"defaultResponse":"null",
+					"consumes":[
+						{
+							"mediaType":"application/json"
+						}
+					],
+					"produces":[
+						{
+							"mediaType":"application/json"
+						}
+					],
+					"bodyParam":{
+						"isBodyParam":true,
+						"baseName":"",
+						"paramName":"",
+						"dataType":"RefundBean",
+						"description":"The refund representation in JSON of the refund to be created",
+						"required":true
+					},
+					"allParams":[
+						{
+							"isBodyParam":true,
+							"baseName":"",
+							"paramName":"",
+							"dataType":"RefundBean",
+							"description":"The refund representation in JSON of the refund to be created",
+							"required":true
+						}
+					],
+					"bodyParams":[
+						{
+							"isBodyParam":true,
+							"baseName":"",
+							"paramName":"",
+							"dataType":"RefundBean",
+							"description":"The refund representation in JSON of the refund to be created",
+							"required":true
+						}
+					],
+					"pathParams":[
+						
+					],
+					"queryParams":[
+						
+					],
+					"headerParams":[
+						
+					],
+					"formParams":[
+						
+					],
+					"tags":[
+						"Apirefunds"
+					],
+					"responses":[
+						{
+							"code":"400",
+							"message":"Error: If an error occurs. The reason/cause(s) should be stated in the response"
+						}
+					],
+					"responseHeaders":[
+						
+					],
+					"imports":[
+						"RefundBean"
+					],
+					"nickname":"POST_controllers_api_Refunds$_createRefund"
+				}
+			]
+		},
+		"package":"io.swagger.client.api",
+		"imports":[
+			{
+				"import":"io.swagger.client.model.RefundBean"
+			}
+		],
+		"basePath":"http://localhost:9000/",
+		"modelPackage":"io.swagger.client.model",
+		"artifactVersion":"1.0.0",
+		"classname":"ApirefundsApi",
+		"groupId":"io.swagger",
+		"invokerPackage":"io.swagger.client",
+		"artifactId":"swagger-client",
+		"classVarName":"apirefunds",
+		"baseName":"Apirefunds"
+	},
+	{
+		"operations":{
+			"classname":"ApisubscriptionsApi",
+			"operation":[
+				{
+					"hasConsumes":true,
+					"hasProduces":true,
+					"hasParams":true,
+					"returnSimpleType":true,
+					"path":"/api/subscriptions",
+					"operationId":"POST_controllers_api_Subscriptions$_createSubscription",
+					"returnType":"Void",
+					"httpMethod":"POST",
+					"returnBaseType":"Void",
+					"summary":"This method creates a new Subscription",
+					"notes":"",
+					"baseName":"Apisubscriptions",
+					"defaultResponse":"null",
+					"consumes":[
+						{
+							"mediaType":"application/json"
+						}
+					],
+					"produces":[
+						{
+							"mediaType":"application/json"
+						}
+					],
+					"bodyParam":{
+						"isBodyParam":true,
+						"baseName":"",
+						"paramName":"",
+						"dataType":"Subscription",
+						"description":"The subscription representation in JSON of the subscription to be created",
+						"required":true
+					},
+					"allParams":[
+						{
+							"isBodyParam":true,
+							"baseName":"",
+							"paramName":"",
+							"dataType":"Subscription",
+							"description":"The subscription representation in JSON of the subscription to be created",
+							"required":true
+						}
+					],
+					"bodyParams":[
+						{
+							"isBodyParam":true,
+							"baseName":"",
+							"paramName":"",
+							"dataType":"Subscription",
+							"description":"The subscription representation in JSON of the subscription to be created",
+							"required":true
+						}
+					],
+					"pathParams":[
+						
+					],
+					"queryParams":[
+						
+					],
+					"headerParams":[
+						
+					],
+					"formParams":[
+						
+					],
+					"tags":[
+						"Apisubscriptions"
+					],
+					"responses":[
+						{
+							"code":"409",
+							"message":"Error: There's another subscription with that ID"
+						}
+					],
+					"responseHeaders":[
+						
+					],
+					"imports":[
+						"Subscription"
+					],
+					"nickname":"POST_controllers_api_Subscriptions$_createSubscription"
+				},
+				{
+					"hasConsumes":true,
+					"hasProduces":true,
+					"hasParams":true,
+					"returnSimpleType":true,
+					"path":"/api/subscriptions/{extId}",
+					"operationId":"PUT_controllers_api_Subscriptions$_changeStatus",
+					"returnType":"Void",
+					"httpMethod":"PUT",
+					"returnBaseType":"Void",
+					"summary":"This method changes the status of an already created subscription",
+					"notes":"",
+					"baseName":"Apisubscriptions",
+					"defaultResponse":"null",
+					"consumes":[
+						{
+							"mediaType":"application/json"
+						}
+					],
+					"produces":[
+						{
+							"mediaType":"application/json"
+						}
+					],
+					"bodyParam":{
+						"isBodyParam":true,
+						"baseName":"",
+						"paramName":"",
+						"dataType":"SubscriptionStatusChange",
+						"description":"The subscription status representation in JSON of the new status",
+						"required":true
+					},
+					"allParams":[
+						{
+							"isBodyParam":true,
+							"baseName":"",
+							"paramName":"",
+							"dataType":"SubscriptionStatusChange",
+							"description":"The subscription status representation in JSON of the new status",
+							"required":true
+						}
+					],
+					"bodyParams":[
+						{
+							"isBodyParam":true,
+							"baseName":"",
+							"paramName":"",
+							"dataType":"SubscriptionStatusChange",
+							"description":"The subscription status representation in JSON of the new status",
+							"required":true
+						}
+					],
+					"pathParams":[
+						
+					],
+					"queryParams":[
+						
+					],
+					"headerParams":[
+						
+					],
+					"formParams":[
+						
+					],
+					"tags":[
+						"Apisubscriptions"
+					],
+					"responses":[
+						{
+							"code":"400",
+							"message":"Error: If an error occurs. The reason/cause(s) should be stated in the response"
+						}
+					],
+					"responseHeaders":[
+						
+					],
+					"imports":[
+						"SubscriptionStatusChange"
+					],
+					"nickname":"PUT_controllers_api_Subscriptions$_changeStatus"
+				}
+			]
+		},
+		"package":"io.swagger.client.api",
+		"imports":[
+			{
+				"import":"io.swagger.client.model.Subscription"
+			},
+			{
+				"import":"io.swagger.client.model.SubscriptionStatusChange"
+			}
+		],
+		"basePath":"http://localhost:9000/",
+		"modelPackage":"io.swagger.client.model",
+		"artifactVersion":"1.0.0",
+		"classname":"ApisubscriptionsApi",
+		"groupId":"io.swagger",
+		"invokerPackage":"io.swagger.client",
+		"artifactId":"swagger-client",
+		"classVarName":"apisubscriptions",
+		"baseName":"Apisubscriptions"
 	}
 ]

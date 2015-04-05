@@ -27,7 +27,7 @@
 							"name":"",
 							"description":"The refund representation in JSON of the refund to be created",
 							"required":true,
-							"type":"RefundEvent",
+							"type":"RefundBean",
 							"paramType":"body",
 							"allowMultiple":false
 						}
@@ -36,17 +36,12 @@
 						{
 							"code":200,
 							"message":"OK: The refund that was just created",
-							"responseModel":"Plan"
+							"responseModel":"RefundEvent"
 						},
 						{
-							"code":409,
-							"message":"Error: Another refund with that ID already exists",
-							"responseModel":"Error"
-						},
-						{
-							"code":404,
-							"message":"The subscription with the given subsExtId could not be found",
-							"responseModel":"Error"
+							"code":400,
+							"message":"Error: If an error occurs. The reason/cause(s) should be stated in the response",
+							"responseModel":"APIError"
 						}
 					]
 				}
@@ -54,164 +49,58 @@
 		}
 	],
 	"models":{
-		"ProviderRequestCode":{
-			"id":"ProviderRequestCode",
-			"properties":{
-				"generatedCode":{
-					"type":"string"
-				}
-			}
-		},
-		"Plan":{
-			"id":"Plan",
-			"description":"",
-			"properties":{
-				"subscriptions":{
-					"type":"array",
-					"uniqueItems":true,
-					"items":{
-						"$ref":"Subscription"
-					}
-				},
-				"amount":{
-					"type":"integer",
-					"format":"int32"
-				},
-				"currency":{
-					"type":"string"
-				},
-				"metaDescription":{
-					"type":"string"
-				},
-				"planInterval":{
-					"$ref":"Period"
-				},
-				"state":{
-					"$ref":"PlanState",
-					"enum":[
-						"ACTIVE",
-						"INACTIVE"
-					]
-				},
-				"name":{
-					"type":"string"
-				},
-				"id":{
-					"type":"integer",
-					"format":"int64"
-				},
-				"version":{
-					"type":"integer",
-					"format":"int32"
-				},
-				"externalId":{
-					"$ref":"ExternalId"
-				},
-				"extCreationInstant":{
-					"type":"string",
-					"format":"date-time"
-				},
-				"extLastModifiedInstant":{
-					"type":"string",
-					"format":"date-time"
-				},
-				"creationInstant":{
-					"type":"string",
-					"format":"date-time"
-				},
-				"lastModifiedInstant":{
-					"type":"string",
-					"format":"date-time"
-				}
-			},
-			"subTypes":[
-				"void"
-			]
-		},
 		"ExternalId":{
 			"id":"ExternalId",
 			"properties":{
 				"externalId":{
 					"type":"string"
-				},
-				"account":{
-					"$ref":"Account"
 				}
 			}
 		},
-		"Event":{
-			"id":"Event",
+		"RefundBean":{
+			"id":"RefundBean",
+			"description":"",
 			"properties":{
-				"id":{
-					"$ref":"Object"
-				},
-				"externalId":{
+				"extId":{
 					"$ref":"ExternalId"
 				},
-				"client":{
-					"$ref":"Client"
+				"amount":{
+					"type":"integer",
+					"format":"int32"
 				},
-				"subscription":{
-					"$ref":"Subscription"
-				},
-				"extCreationInstant":{
-					"type":"string",
-					"format":"date-time"
-				},
-				"creationInstant":{
-					"type":"string",
-					"format":"date-time"
-				},
-				"lastModifiedInstant":{
+				"dateOfChange":{
 					"type":"string",
 					"format":"date-time"
 				}
 			}
 		},
-		"Provider":{
-			"id":"Provider",
+		"APIError":{
+			"id":"APIError",
+			"description":"A generic error class with a descriptive reason",
 			"properties":{
-				"id":{
-					"$ref":"Object"
-				},
-				"account":{
-					"$ref":"Account"
-				},
-				"providerStatus":{
-					"$ref":"Status"
-				},
-				"alphaUid":{
+				"reason":{
 					"type":"string"
 				},
-				"creationInstant":{
-					"type":"string",
-					"format":"date-time"
+				"cause":{
+					"$ref":"Throwable"
 				},
-				"lastModifiedInstant":{
-					"type":"string",
-					"format":"date-time"
-				}
-			}
-		},
-		"BetaCode":{
-			"id":"BetaCode",
-			"properties":{
-				"id":{
-					"$ref":"Object"
-				},
-				"associatedUser":{
-					"$ref":"BMUser"
-				},
-				"uidSlashCode":{
+				"message":{
 					"type":"string"
 				},
-				"creationInstant":{
-					"type":"string",
-					"format":"date-time"
+				"localizedMessage":{
+					"type":"string"
 				},
-				"lastModifiedInstant":{
-					"type":"string",
-					"format":"date-time"
+				"stackTrace":{
+					"type":"array",
+					"items":{
+						"$ref":"StackTraceElement"
+					}
+				},
+				"suppressed":{
+					"type":"array",
+					"items":{
+						"$ref":"Throwable"
+					}
 				}
 			}
 		},
@@ -276,119 +165,6 @@
 				}
 			}
 		},
-		"AccountUser":{
-			"id":"AccountUser",
-			"properties":{
-				"key":{
-					"$ref":"AUKey"
-				},
-				"membershipSuspended":{
-					"type":"boolean"
-				},
-				"role":{
-					"$ref":"Role",
-					"enum":[
-						"MEMBER",
-						"MANAGER",
-						"OWNER"
-					]
-				},
-				"id":{
-					"$ref":"Object"
-				},
-				"account":{
-					"$ref":"Account"
-				},
-				"creationInstant":{
-					"type":"string",
-					"format":"date-time"
-				},
-				"lastModifiedInstant":{
-					"type":"string",
-					"format":"date-time"
-				}
-			}
-		},
-		"BMUser":{
-			"id":"BMUser",
-			"properties":{
-				"id":{
-					"$ref":"Object"
-				},
-				"betaCode":{
-					"$ref":"BetaCode"
-				},
-				"email":{
-					"type":"string"
-				},
-				"password":{
-					"type":"string"
-				},
-				"username":{
-					"type":"string"
-				},
-				"suspended":{
-					"type":"boolean"
-				},
-				"firstName":{
-					"type":"string"
-				},
-				"providerId":{
-					"type":"string"
-				},
-				"lastName":{
-					"type":"string"
-				},
-				"avatarUrl":{
-					"type":"string"
-				},
-				"lastLoginInstant":{
-					"type":"string",
-					"format":"date-time"
-				},
-				"role":{
-					"$ref":"Role",
-					"enum":[
-						"USER_WITHOUT_CODE",
-						"REGULAR",
-						"ADMIN"
-					]
-				},
-				"accountUsers":{
-					"type":"array",
-					"uniqueItems":true,
-					"items":{
-						"$ref":"AccountUser"
-					}
-				},
-				"permissions":{
-					"$ref":"List[? extends be.objectify.deadbolt.core.models.Permission]"
-				},
-				"identifier":{
-					"type":"string"
-				},
-				"active":{
-					"type":"boolean"
-				},
-				"roles":{
-					"$ref":"List[Role]"
-				},
-				"defaultAccount":{
-					"$ref":"Account"
-				},
-				"defaultAccountUser":{
-					"$ref":"AccountUser"
-				},
-				"creationInstant":{
-					"type":"string",
-					"format":"date-time"
-				},
-				"lastModifiedInstant":{
-					"type":"string",
-					"format":"date-time"
-				}
-			}
-		},
 		"Subscription":{
 			"id":"Subscription",
 			"description":"",
@@ -401,39 +177,15 @@
 					"type":"string",
 					"format":"date-time"
 				},
-				"plan":{
-					"$ref":"Plan"
-				},
-				"client":{
-					"$ref":"Client"
-				},
-				"currency":{
-					"type":"string"
-				},
 				"name":{
 					"type":"string"
 				},
-				"dateOfNextCharge":{
-					"type":"string",
-					"format":"date-time"
-				},
 				"subsInterval":{
-					"$ref":"Period"
-				},
-				"validityOfSubscription":{
 					"$ref":"Period"
 				},
 				"amount":{
 					"type":"integer",
 					"format":"int32"
-				},
-				"trialStartTime":{
-					"type":"string",
-					"format":"date-time"
-				},
-				"trialEndTime":{
-					"type":"string",
-					"format":"date-time"
 				},
 				"canceledAt":{
 					"type":"string",
@@ -450,13 +202,14 @@
 						"DELETED"
 					]
 				},
-				"id":{
-					"type":"integer",
-					"format":"int64"
+				"clientId":{
+					"type":"string"
 				},
-				"version":{
-					"type":"integer",
-					"format":"int32"
+				"planId":{
+					"type":"string"
+				},
+				"classifiers":{
+					"$ref":"Map[string,string]"
 				},
 				"externalId":{
 					"$ref":"ExternalId"
@@ -468,19 +221,43 @@
 				"extLastModifiedInstant":{
 					"type":"string",
 					"format":"date-time"
-				},
-				"creationInstant":{
-					"type":"string",
-					"format":"date-time"
-				},
-				"lastModifiedInstant":{
-					"type":"string",
-					"format":"date-time"
 				}
 			},
 			"subTypes":[
 				"void"
 			]
+		},
+		"RefundEvent":{
+			"id":"RefundEvent",
+			"properties":{
+				"originalAmount":{
+					"type":"integer",
+					"format":"int32"
+				},
+				"subsId":{
+					"$ref":"ExternalId"
+				},
+				"amount":{
+					"type":"integer",
+					"format":"int32"
+				},
+				"id":{
+					"$ref":"Object"
+				},
+				"externalId":{
+					"$ref":"ExternalId"
+				},
+				"client":{
+					"$ref":"Client"
+				},
+				"subscription":{
+					"$ref":"Subscription"
+				},
+				"extCreationInstant":{
+					"type":"string",
+					"format":"date-time"
+				}
+			}
 		},
 		"DurationFieldType":{
 			"id":"DurationFieldType",
@@ -503,13 +280,8 @@
 				"description":{
 					"type":"string"
 				},
-				"id":{
-					"type":"integer",
-					"format":"int64"
-				},
-				"version":{
-					"type":"integer",
-					"format":"int32"
+				"classifiers":{
+					"$ref":"Map[string,string]"
 				},
 				"externalId":{
 					"$ref":"ExternalId"
@@ -519,115 +291,6 @@
 					"format":"date-time"
 				},
 				"extLastModifiedInstant":{
-					"type":"string",
-					"format":"date-time"
-				},
-				"creationInstant":{
-					"type":"string",
-					"format":"date-time"
-				},
-				"lastModifiedInstant":{
-					"type":"string",
-					"format":"date-time"
-				}
-			}
-		},
-		"AUKey":{
-			"id":"AUKey",
-			"properties":{
-				"bmUser":{
-					"$ref":"BMUser"
-				},
-				"account":{
-					"$ref":"Account"
-				}
-			}
-		},
-		"Status":{
-			"id":"Status",
-			"properties":{
-				"id":{
-					"$ref":"Object"
-				},
-				"providerStatus":{
-					"$ref":"ProviderStatus",
-					"enum":[
-						"NOT_SETUP"
-					]
-				},
-				"provider":{
-					"$ref":"Provider"
-				},
-				"extCreationInstant":{
-					"type":"string",
-					"format":"date-time"
-				},
-				"extLastModifiedInstant":{
-					"type":"string",
-					"format":"date-time"
-				},
-				"creationInstant":{
-					"type":"string",
-					"format":"date-time"
-				},
-				"lastModifiedInstant":{
-					"type":"string",
-					"format":"date-time"
-				}
-			}
-		},
-		"Account":{
-			"id":"Account",
-			"properties":{
-				"id":{
-					"$ref":"Object"
-				},
-				"provider":{
-					"$ref":"Provider"
-				},
-				"name":{
-					"type":"string"
-				},
-				"businessName":{
-					"type":"string"
-				},
-				"website":{
-					"type":"string"
-				},
-				"members":{
-					"type":"array",
-					"uniqueItems":true,
-					"items":{
-						"$ref":"AccountUser"
-					}
-				},
-				"suspended":{
-					"type":"boolean"
-				},
-				"accountType":{
-					"$ref":"AccountType",
-					"enum":[
-						"REGULAR",
-						"ADMIN"
-					]
-				},
-				"lastEventFullyProcessed":{
-					"$ref":"Event"
-				},
-				"providerRequest":{
-					"$ref":"ProviderRequestCode"
-				},
-				"providerStatus":{
-					"$ref":"ProviderStatus",
-					"enum":[
-						"NOT_SETUP"
-					]
-				},
-				"creationInstant":{
-					"type":"string",
-					"format":"date-time"
-				},
-				"lastModifiedInstant":{
 					"type":"string",
 					"format":"date-time"
 				}
