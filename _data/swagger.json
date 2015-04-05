@@ -1,608 +1,626 @@
 {
-  "swagger" : "2.0",
-  "info" : {
-    "version" : "0.2"
-  },
-  "host" : "localhost:9000",
-  "basePath" : "/",
-  "schemes" : [ "http" ],
-  "paths" : {
-    "/api/clients" : {
-      "post" : {
-        "tags" : [ "apiclients" ],
-        "summary" : "It creates a client",
-        "description" : "Notes example",
-        "operationId" : "POST_controllers_api_Clients$_create",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "",
-          "description" : "The client representation in JSON of the client to be created",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/Client"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "success",
-            "schema" : {
-              "$ref" : "#/definitions/void"
-            }
-          },
-          "409" : {
-            "description" : "Error: Another client with that ID already exists",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/api/clients/jsonArray" : {
-      "post" : {
-        "tags" : [ "apiclients" ],
-        "summary" : "It creates multiple new Client from a JSON array",
-        "description" : "",
-        "operationId" : "POST_controllers_api_Clients$_createFromArray",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "",
-          "description" : "The client representation in JSON of the client to be created",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/Client"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "success",
-            "schema" : {
-              "$ref" : "#/definitions/void"
-            }
-          },
-          "409" : {
-            "description" : "Error: Another client with that ID already exists, the ids and ExtIds of those will be listed",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
-            }
-          }
-        }
-      }
-    }
-  },
-  "definitions" : {
-    "Status" : {
-      "properties" : {
-        "id" : {
-          "$ref" : "#/definitions/Object"
-        },
-        "providerStatus" : {
-          "$ref" : "#/definitions/ProviderStatus"
-        },
-        "provider" : {
-          "$ref" : "#/definitions/Provider"
-        },
-        "extCreationInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "extLastModifiedInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "creationInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "lastModifiedInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        }
-      }
-    },
-    "PeriodType" : {
-      "properties" : {
-        "name" : {
-          "type" : "string"
-        }
-      }
-    },
-    "Account" : {
-      "properties" : {
-        "id" : {
-          "$ref" : "#/definitions/Object"
-        },
-        "provider" : {
-          "$ref" : "#/definitions/Provider"
-        },
-        "name" : {
-          "type" : "string"
-        },
-        "businessName" : {
-          "type" : "string"
-        },
-        "website" : {
-          "type" : "string"
-        },
-        "members" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/AccountUser"
-          }
-        },
-        "suspended" : {
-          "type" : "boolean"
-        },
-        "accountType" : {
-          "$ref" : "#/definitions/AccountType"
-        },
-        "lastEventFullyProcessed" : {
-          "$ref" : "#/definitions/Event"
-        },
-        "providerRequest" : {
-          "$ref" : "#/definitions/ProviderRequestCode"
-        },
-        "providerStatus" : {
-          "$ref" : "#/definitions/ProviderStatus"
-        },
-        "creationInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "lastModifiedInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        }
-      }
-    },
-    "ExternalId" : {
-      "properties" : {
-        "externalId" : {
-          "type" : "string"
-        },
-        "account" : {
-          "$ref" : "#/definitions/Account"
-        }
-      }
-    },
-    "Period" : {
-      "properties" : {
-        "hours" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "minutes" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "seconds" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "millis" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "months" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "years" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "days" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "weeks" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "periodType" : {
-          "$ref" : "#/definitions/PeriodType"
-        },
-        "values" : {
-          "type" : "array",
-          "items" : {
-            "type" : "integer",
-            "format" : "int32"
-          }
-        },
-        "fieldTypes" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/DurationFieldType"
-          }
-        }
-      }
-    },
-    "Plan" : {
-      "properties" : {
-        "subscriptions" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/Subscription"
-          }
-        },
-        "amount" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "currency" : {
-          "type" : "string"
-        },
-        "metaDescription" : {
-          "type" : "string"
-        },
-        "planInterval" : {
-          "$ref" : "#/definitions/Period"
-        },
-        "state" : {
-          "$ref" : "#/definitions/PlanState"
-        },
-        "name" : {
-          "type" : "string"
-        },
-        "id" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
-        "version" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "externalId" : {
-          "$ref" : "#/definitions/ExternalId"
-        },
-        "extCreationInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "extLastModifiedInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "creationInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "lastModifiedInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        }
-      },
-      "description" : ""
-    },
-    "Provider" : {
-      "properties" : {
-        "id" : {
-          "$ref" : "#/definitions/Object"
-        },
-        "account" : {
-          "$ref" : "#/definitions/Account"
-        },
-        "providerStatus" : {
-          "$ref" : "#/definitions/Status"
-        },
-        "alphaUid" : {
-          "type" : "string"
-        },
-        "creationInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "lastModifiedInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        }
-      }
-    },
-    "AUKey" : {
-      "properties" : {
-        "bmUser" : {
-          "$ref" : "#/definitions/BMUser"
-        },
-        "account" : {
-          "$ref" : "#/definitions/Account"
-        }
-      }
-    },
-    "BetaCode" : {
-      "properties" : {
-        "id" : {
-          "$ref" : "#/definitions/Object"
-        },
-        "associatedUser" : {
-          "$ref" : "#/definitions/BMUser"
-        },
-        "uidSlashCode" : {
-          "type" : "string"
-        },
-        "creationInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "lastModifiedInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        }
-      }
-    },
-    "AccountUser" : {
-      "properties" : {
-        "key" : {
-          "$ref" : "#/definitions/AUKey"
-        },
-        "membershipSuspended" : {
-          "type" : "boolean"
-        },
-        "role" : {
-          "$ref" : "#/definitions/Role"
-        },
-        "id" : {
-          "$ref" : "#/definitions/Object"
-        },
-        "account" : {
-          "$ref" : "#/definitions/Account"
-        },
-        "creationInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "lastModifiedInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        }
-      }
-    },
-    "BMUser" : {
-      "properties" : {
-        "id" : {
-          "$ref" : "#/definitions/Object"
-        },
-        "betaCode" : {
-          "$ref" : "#/definitions/BetaCode"
-        },
-        "email" : {
-          "type" : "string"
-        },
-        "password" : {
-          "type" : "string"
-        },
-        "username" : {
-          "type" : "string"
-        },
-        "suspended" : {
-          "type" : "boolean"
-        },
-        "firstName" : {
-          "type" : "string"
-        },
-        "providerId" : {
-          "type" : "string"
-        },
-        "lastName" : {
-          "type" : "string"
-        },
-        "avatarUrl" : {
-          "type" : "string"
-        },
-        "lastLoginInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "role" : {
-          "$ref" : "#/definitions/Role"
-        },
-        "accountUsers" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/AccountUser"
-          }
-        },
-        "permissions" : {
-          "$ref" : "#/definitions/List[? extends be.objectify.deadbolt.core.models.Permission]"
-        },
-        "active" : {
-          "type" : "boolean"
-        },
-        "identifier" : {
-          "type" : "string"
-        },
-        "roles" : {
-          "$ref" : "#/definitions/List[Role]"
-        },
-        "defaultAccount" : {
-          "$ref" : "#/definitions/Account"
-        },
-        "defaultAccountUser" : {
-          "$ref" : "#/definitions/AccountUser"
-        },
-        "creationInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "lastModifiedInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        }
-      }
-    },
-    "DurationFieldType" : {
-      "properties" : {
-        "name" : {
-          "type" : "string"
-        }
-      }
-    },
-    "Event" : {
-      "properties" : {
-        "id" : {
-          "$ref" : "#/definitions/Object"
-        },
-        "externalId" : {
-          "$ref" : "#/definitions/ExternalId"
-        },
-        "client" : {
-          "$ref" : "#/definitions/Client"
-        },
-        "subscription" : {
-          "$ref" : "#/definitions/Subscription"
-        },
-        "extCreationInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "creationInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "lastModifiedInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        }
-      }
-    },
-    "List" : {
-      "properties" : {
-        "empty" : {
-          "type" : "boolean"
-        }
-      }
-    },
-    "Subscription" : {
-      "properties" : {
-        "extActivationDate" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "extEndDate" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "plan" : {
-          "$ref" : "#/definitions/Plan"
-        },
-        "client" : {
-          "$ref" : "#/definitions/Client"
-        },
-        "currency" : {
-          "type" : "string"
-        },
-        "name" : {
-          "type" : "string"
-        },
-        "dateOfNextCharge" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "subsInterval" : {
-          "$ref" : "#/definitions/Period"
-        },
-        "validityOfSubscription" : {
-          "$ref" : "#/definitions/Period"
-        },
-        "amount" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "trialStartTime" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "trialEndTime" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "canceledAt" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "status" : {
-          "$ref" : "#/definitions/Status"
-        },
-        "id" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
-        "version" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "externalId" : {
-          "$ref" : "#/definitions/ExternalId"
-        },
-        "extCreationInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "extLastModifiedInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "creationInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "lastModifiedInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        }
-      },
-      "description" : ""
-    },
-    "Client" : {
-      "properties" : {
-        "name" : {
-          "type" : "string"
-        },
-        "email" : {
-          "type" : "string"
-        },
-        "description" : {
-          "type" : "string"
-        },
-        "id" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
-        "version" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "externalId" : {
-          "$ref" : "#/definitions/ExternalId"
-        },
-        "extCreationInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "extLastModifiedInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "creationInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "lastModifiedInstant" : {
-          "type" : "string",
-          "format" : "date-time"
-        }
-      },
-      "description" : ""
-    },
-    "ProviderRequestCode" : {
-      "properties" : {
-        "generatedCode" : {
-          "type" : "string"
-        }
-      }
-    }
-  }
+	"swagger":"2.0",
+	"info":{
+		"version":"0.2"
+	},
+	"host":"localhost:9000",
+	"basePath":"/",
+	"schemes":[
+		"http"
+	],
+	"paths":{
+		"/api/clients":{
+			"post":{
+				"tags":[
+					"apiclients"
+				],
+				"summary":"It creates a client",
+				"description":"Notes example",
+				"operationId":"POST_controllers_api_Clients$_create",
+				"consumes":[
+					"application/json"
+				],
+				"produces":[
+					"application/json"
+				],
+				"parameters":[
+					{
+						"in":"body",
+						"name":"",
+						"description":"The client representation in JSON of the client to be created",
+						"required":true,
+						"schema":{
+							"$ref":"#/definitions/Client"
+						}
+					}
+				],
+				"responses":{
+					"200":{
+						"description":"success",
+						"schema":{
+							"$ref":"#/definitions/void"
+						}
+					},
+					"409":{
+						"description":"Error: Another client with that ID already exists",
+						"schema":{
+							"$ref":"#/definitions/Error"
+						}
+					}
+				}
+			}
+		},
+		"/api/clients/jsonArray":{
+			"post":{
+				"tags":[
+					"apiclients"
+				],
+				"summary":"It creates multiple new Client from a JSON array",
+				"description":"",
+				"operationId":"POST_controllers_api_Clients$_createFromArray",
+				"consumes":[
+					"application/json"
+				],
+				"produces":[
+					"application/json"
+				],
+				"parameters":[
+					{
+						"in":"body",
+						"name":"",
+						"description":"The client representation in JSON of the client to be created",
+						"required":true,
+						"schema":{
+							"$ref":"#/definitions/Client"
+						}
+					}
+				],
+				"responses":{
+					"200":{
+						"description":"success",
+						"schema":{
+							"$ref":"#/definitions/void"
+						}
+					},
+					"409":{
+						"description":"Error: Another client with that ID already exists, the ids and ExtIds of those will be listed",
+						"schema":{
+							"$ref":"#/definitions/Error"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions":{
+		"Status":{
+			"properties":{
+				"id":{
+					"$ref":"#/definitions/Object"
+				},
+				"providerStatus":{
+					"$ref":"#/definitions/ProviderStatus"
+				},
+				"provider":{
+					"$ref":"#/definitions/Provider"
+				},
+				"extCreationInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"extLastModifiedInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"creationInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"lastModifiedInstant":{
+					"type":"string",
+					"format":"date-time"
+				}
+			}
+		},
+		"PeriodType":{
+			"properties":{
+				"name":{
+					"type":"string"
+				}
+			}
+		},
+		"Account":{
+			"properties":{
+				"id":{
+					"$ref":"#/definitions/Object"
+				},
+				"provider":{
+					"$ref":"#/definitions/Provider"
+				},
+				"name":{
+					"type":"string"
+				},
+				"businessName":{
+					"type":"string"
+				},
+				"website":{
+					"type":"string"
+				},
+				"members":{
+					"type":"array",
+					"items":{
+						"$ref":"#/definitions/AccountUser"
+					}
+				},
+				"suspended":{
+					"type":"boolean"
+				},
+				"accountType":{
+					"$ref":"#/definitions/AccountType"
+				},
+				"lastEventFullyProcessed":{
+					"$ref":"#/definitions/Event"
+				},
+				"providerRequest":{
+					"$ref":"#/definitions/ProviderRequestCode"
+				},
+				"providerStatus":{
+					"$ref":"#/definitions/ProviderStatus"
+				},
+				"creationInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"lastModifiedInstant":{
+					"type":"string",
+					"format":"date-time"
+				}
+			}
+		},
+		"ExternalId":{
+			"properties":{
+				"externalId":{
+					"type":"string"
+				},
+				"account":{
+					"$ref":"#/definitions/Account"
+				}
+			}
+		},
+		"Period":{
+			"properties":{
+				"hours":{
+					"type":"integer",
+					"format":"int32"
+				},
+				"minutes":{
+					"type":"integer",
+					"format":"int32"
+				},
+				"seconds":{
+					"type":"integer",
+					"format":"int32"
+				},
+				"millis":{
+					"type":"integer",
+					"format":"int32"
+				},
+				"months":{
+					"type":"integer",
+					"format":"int32"
+				},
+				"years":{
+					"type":"integer",
+					"format":"int32"
+				},
+				"days":{
+					"type":"integer",
+					"format":"int32"
+				},
+				"weeks":{
+					"type":"integer",
+					"format":"int32"
+				},
+				"periodType":{
+					"$ref":"#/definitions/PeriodType"
+				},
+				"values":{
+					"type":"array",
+					"items":{
+						"type":"integer",
+						"format":"int32"
+					}
+				},
+				"fieldTypes":{
+					"type":"array",
+					"items":{
+						"$ref":"#/definitions/DurationFieldType"
+					}
+				}
+			}
+		},
+		"Plan":{
+			"properties":{
+				"subscriptions":{
+					"type":"array",
+					"items":{
+						"$ref":"#/definitions/Subscription"
+					}
+				},
+				"amount":{
+					"type":"integer",
+					"format":"int32"
+				},
+				"currency":{
+					"type":"string"
+				},
+				"metaDescription":{
+					"type":"string"
+				},
+				"planInterval":{
+					"$ref":"#/definitions/Period"
+				},
+				"state":{
+					"$ref":"#/definitions/PlanState"
+				},
+				"name":{
+					"type":"string"
+				},
+				"id":{
+					"type":"integer",
+					"format":"int64"
+				},
+				"version":{
+					"type":"integer",
+					"format":"int32"
+				},
+				"externalId":{
+					"$ref":"#/definitions/ExternalId"
+				},
+				"extCreationInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"extLastModifiedInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"creationInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"lastModifiedInstant":{
+					"type":"string",
+					"format":"date-time"
+				}
+			},
+			"description":""
+		},
+		"Provider":{
+			"properties":{
+				"id":{
+					"$ref":"#/definitions/Object"
+				},
+				"account":{
+					"$ref":"#/definitions/Account"
+				},
+				"providerStatus":{
+					"$ref":"#/definitions/Status"
+				},
+				"alphaUid":{
+					"type":"string"
+				},
+				"creationInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"lastModifiedInstant":{
+					"type":"string",
+					"format":"date-time"
+				}
+			}
+		},
+		"AUKey":{
+			"properties":{
+				"bmUser":{
+					"$ref":"#/definitions/BMUser"
+				},
+				"account":{
+					"$ref":"#/definitions/Account"
+				}
+			}
+		},
+		"BetaCode":{
+			"properties":{
+				"id":{
+					"$ref":"#/definitions/Object"
+				},
+				"associatedUser":{
+					"$ref":"#/definitions/BMUser"
+				},
+				"uidSlashCode":{
+					"type":"string"
+				},
+				"creationInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"lastModifiedInstant":{
+					"type":"string",
+					"format":"date-time"
+				}
+			}
+		},
+		"AccountUser":{
+			"properties":{
+				"key":{
+					"$ref":"#/definitions/AUKey"
+				},
+				"membershipSuspended":{
+					"type":"boolean"
+				},
+				"role":{
+					"$ref":"#/definitions/Role"
+				},
+				"id":{
+					"$ref":"#/definitions/Object"
+				},
+				"account":{
+					"$ref":"#/definitions/Account"
+				},
+				"creationInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"lastModifiedInstant":{
+					"type":"string",
+					"format":"date-time"
+				}
+			}
+		},
+		"BMUser":{
+			"properties":{
+				"id":{
+					"$ref":"#/definitions/Object"
+				},
+				"betaCode":{
+					"$ref":"#/definitions/BetaCode"
+				},
+				"email":{
+					"type":"string"
+				},
+				"password":{
+					"type":"string"
+				},
+				"username":{
+					"type":"string"
+				},
+				"suspended":{
+					"type":"boolean"
+				},
+				"firstName":{
+					"type":"string"
+				},
+				"providerId":{
+					"type":"string"
+				},
+				"lastName":{
+					"type":"string"
+				},
+				"avatarUrl":{
+					"type":"string"
+				},
+				"lastLoginInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"role":{
+					"$ref":"#/definitions/Role"
+				},
+				"accountUsers":{
+					"type":"array",
+					"items":{
+						"$ref":"#/definitions/AccountUser"
+					}
+				},
+				"permissions":{
+					"$ref":"#/definitions/List[? extends be.objectify.deadbolt.core.models.Permission]"
+				},
+				"active":{
+					"type":"boolean"
+				},
+				"identifier":{
+					"type":"string"
+				},
+				"roles":{
+					"$ref":"#/definitions/List[Role]"
+				},
+				"defaultAccount":{
+					"$ref":"#/definitions/Account"
+				},
+				"defaultAccountUser":{
+					"$ref":"#/definitions/AccountUser"
+				},
+				"creationInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"lastModifiedInstant":{
+					"type":"string",
+					"format":"date-time"
+				}
+			}
+		},
+		"DurationFieldType":{
+			"properties":{
+				"name":{
+					"type":"string"
+				}
+			}
+		},
+		"Event":{
+			"properties":{
+				"id":{
+					"$ref":"#/definitions/Object"
+				},
+				"externalId":{
+					"$ref":"#/definitions/ExternalId"
+				},
+				"client":{
+					"$ref":"#/definitions/Client"
+				},
+				"subscription":{
+					"$ref":"#/definitions/Subscription"
+				},
+				"extCreationInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"creationInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"lastModifiedInstant":{
+					"type":"string",
+					"format":"date-time"
+				}
+			}
+		},
+		"List":{
+			"properties":{
+				"empty":{
+					"type":"boolean"
+				}
+			}
+		},
+		"Subscription":{
+			"properties":{
+				"extActivationDate":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"extEndDate":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"plan":{
+					"$ref":"#/definitions/Plan"
+				},
+				"client":{
+					"$ref":"#/definitions/Client"
+				},
+				"currency":{
+					"type":"string"
+				},
+				"name":{
+					"type":"string"
+				},
+				"dateOfNextCharge":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"subsInterval":{
+					"$ref":"#/definitions/Period"
+				},
+				"validityOfSubscription":{
+					"$ref":"#/definitions/Period"
+				},
+				"amount":{
+					"type":"integer",
+					"format":"int32"
+				},
+				"trialStartTime":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"trialEndTime":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"canceledAt":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"status":{
+					"$ref":"#/definitions/Status"
+				},
+				"id":{
+					"type":"integer",
+					"format":"int64"
+				},
+				"version":{
+					"type":"integer",
+					"format":"int32"
+				},
+				"externalId":{
+					"$ref":"#/definitions/ExternalId"
+				},
+				"extCreationInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"extLastModifiedInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"creationInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"lastModifiedInstant":{
+					"type":"string",
+					"format":"date-time"
+				}
+			},
+			"description":""
+		},
+		"Client":{
+			"properties":{
+				"name":{
+					"type":"string"
+				},
+				"email":{
+					"type":"string"
+				},
+				"description":{
+					"type":"string"
+				},
+				"id":{
+					"type":"integer",
+					"format":"int64"
+				},
+				"version":{
+					"type":"integer",
+					"format":"int32"
+				},
+				"externalId":{
+					"$ref":"#/definitions/ExternalId"
+				},
+				"extCreationInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"extLastModifiedInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"creationInstant":{
+					"type":"string",
+					"format":"date-time"
+				},
+				"lastModifiedInstant":{
+					"type":"string",
+					"format":"date-time"
+				}
+			},
+			"description":""
+		},
+		"ProviderRequestCode":{
+			"properties":{
+				"generatedCode":{
+					"type":"string"
+				}
+			}
+		}
+	}
 }
