@@ -1,20 +1,22 @@
  fieldsDescription:
-    extId: required - the unique and immutable id used by your system, and that can be used to refer in the future to this newly created plan.
-    amount: "amount in cents, of the default value. e.g. 10USD is represented as 10,00USD therefore this field should have the value of 1000 * required -note- this parameter can be changed by each subscription"
+    amount: "amount in cents, of the default value. e.g. 10USD is represented as 10,00USD therefore this field should have the value of 1000 * required -note- this parameter can be changed individually by each subscription"
     currency: "the ISO 4217 code of the currency, if it's not a valid one, an error will be sent in response - required -note- list of valid ISO 4217 codes can be found here: http://en.wikipedia.org/wiki/ISO_4217"
     metaDescription: "a simple description of this plan * optional"
     planInterval: "Format: number DAY|WEEK|MONTH|YEAR - the interval of time between the customer being charged"
-    ext_creation_instant: "Timestap in UTC of the date of when the creation of this plan took place in the client"
     state: "either Active or Inactive * optional - if not present, active is assumed an inactive plan shouldn't have any new subscriptions associated with it, if the client reports one, an error will be thrown. * in the future All inactive plans will appear distinctly on the clients' dashboards."
     name: "a simple name for this plan e.g. 'Basic' * required"
+    classifiers: optional List of key value pairs to classify this object.
+    externalId: required - the unique and immutable id used by your system, and that can be used to refer in the future to this newly created plan.
+    extCreationInstant: "Timestamp in UTC of the date of when the creation of this plan took place in the client *optional"
+    extLastModifiedInstant: UTC timestamp of when it was last modified (client's reference) optional
  example: > 
      {
-        extId: "plan#151512"
-        amount: 2900
-        currency: "BRL"
-        metaDescription: "Basic 29R plan"
-        planInterval: "1 MONTH"
-        ext_creation_instant: 1426536639795
-        state: "Active"
-        name: "Basic"
+        amount: 2900,
+        currency: "BRL",
+        metaDescription: "Basic 29R plan",
+        planInterval: "1 MONTH",
+        state: "Active",
+        name: "Basic",
+        externalId: "plan#10",
+        extCreationInstant: 1426536639795
      }

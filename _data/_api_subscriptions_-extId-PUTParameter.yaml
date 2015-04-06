@@ -1,6 +1,6 @@
  fieldsDescription:
-    status: "the new status - *required "
-    date: " UTC date of when it happened *required"
+    newStatus: "the new status - *required "
+    dateOfChange: "the UTC timestamp when the refund was done *required"
     force: " boolean - it may force the transition to take place *optional"
  example: > 
      {

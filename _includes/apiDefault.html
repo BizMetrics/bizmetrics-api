@@ -6,6 +6,7 @@
    
 {% for api in site.data[include.apiPath].apis %}
  {% for apiOperation in api.operations %}
+ 	<h5>HTTPS Method:</h5>
  	{% highlight javascript %}
  	 {{apiOperation.method}} {{api.path}}
  	{% endhighlight %}

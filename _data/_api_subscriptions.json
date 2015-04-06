@@ -79,8 +79,8 @@
 							"responseModel":"Subscription"
 						},
 						{
-							"code":409,
-							"message":"Error: There's another subscription with that ID",
+							"code":400,
+							"message":"Error: If an error occurs. The reason/cause(s) should be stated in the response",
 							"responseModel":"APIError"
 						}
 					]

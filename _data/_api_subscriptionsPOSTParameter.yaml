@@ -1,22 +1,25 @@
  fieldsDescription:
-    activationDate: "your activation date *optional/*required depends on state"
-    extEndDate: "the date when the subscription ended *optional/*required depends on state"
-    planId: "the plan id (using your id) *required"
-    clientId: "the client id (using your reference) *required"
+    extActivationDate: "your activation date *optional/*required depends on state"
+    extEndDate: "the UTC timestamp when the subscription ended *optional/*required depends on state"
     name: "optional name for the subscription (it is not needed and it currently does not show - but it might show in the future) *optional"
     subsInterval: " an optional period that overrides the default period of the given plan, if not given, the plan's default period will be used - Format: number DAY|WEEK|MONTH|YEAR - the interval of time between the customer being charged *optional"
     amount: "overrides the amount defined in the plan, it's optional, if not present, the amount in the plan is assumed *optional"
+    canceledAt: "the UTC timestamp when (if) the Subscription was canceled"
     status: "*required one of [ACTIVE - if used, the activationDate must be given ; EXPIRED - if the subscription was once active and now has ended due to regular expiration reason  - e.g. a subscription was renewed each month, but expired after a year - required the extEndDate  FAILED - if the subscription was once active and now has ended due to a payment failure - e.g. credit card expired - required the extEndDate  CANCELLED - if the subscription was once active and now has ended due to cancellation from  the user - required the extEndDate INACTIVE - if the subscription was once active and has been inactive and the reasons don't fit in the other states"
-    extId: "required - the unique and immutable id used by your system, and that can be used to refer in the future to this newly created subscription."
-    ext_creation_instant: "Timestap in UTC of the date of when the creation of this plan took place in the client"
+    clientId: "the client id (using your reference) *required"
+    planId: "the plan id (using your id) *required"
+    classifiers: optional List of key value pairs to classify this object.
+    externalId: "required - the unique and immutable id used by your system, and that can be used to refer in the future to this newly created subscription."
+    extCreationInstant: "Timestamp in UTC of the date and time of when the creation of this subscription took place in the client *optional"
+    extLastModifiedInstant: UTC timestamp of when it was last modified (client's reference) optional
  example: > 
      {
-        activationDate: 1426536639795
+        extActivationDate: 1426536639795
         extEndDate: 1426536639987
+        name: "None - optional"
         planId: "plan#151512"
         clientId: "client#151512"
-        name: "None - optional"
         status: "EXPIRED"
-        extId: "subscription#151512"
-        ext_creation_instant: 1426536639795
+        externalId: "subscription#151512"
+        extCreationInstant: 1426536639795
      }

@@ -2,17 +2,20 @@
      name: optional
      email: optional
      description: optional
-     extId: must be given for future reference *required
-     ext_creation_instant: when it was created (client's reference)
-     ext_last_modified_instant: when it was last modified (optional)
+     classifiers: optional List of key value pairs to classify this object.
+     externalId: must be given for future reference *required
+     extCreationInstant: "Timestamp in UTC of the date and time of when the creation of this client took place in the client *optional"
+     extLastModifiedInstant: UTC timestamp of when it was last modified (client's reference) optional
  example: > 
      {
-        name: "John doe"
-        email: "jdoe@gmail.com"
-        description: "nice guy"
-        extId: "client#151512"
-        ext_creation_instant: 1426536639795
-        ext_last_modified_instant: 1426536635592
+        name: "John doe",
+        email: "jdoe@gmail.com",
+        description: "nice guy",
+        classifiers: [{"utm_source": "facebook"},
+                        {"utm_name": "April2ndCampaign"} ],
+        externalId: "client#151512",
+        extCreationInstant: 1426536639795,
+        extLastModifiedInstant: 1426536635592
      }
 
 

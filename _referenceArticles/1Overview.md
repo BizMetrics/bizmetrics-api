@@ -3,10 +3,6 @@ title: Overview
 anchor: overview
 ---
 
-# NOTE:
-
-*The API is currently on a BETA and *DRAFT* state, meaning that it might still change. Nothing should be implemented until the *DRAFT* state is revoked.*
-
 # Overview:
 
 The API basicly consists of a REST API, where JSON content is transmitted in the body of the requests.
