@@ -2,7 +2,7 @@
     amount: "amount in cents, of the default value. e.g. 10USD is represented as 10,00USD therefore this field should have the value of 1000 * required -note- this parameter can be changed individually by each subscription"
     currency: "the ISO 4217 code of the currency, if it's not a valid one, an error will be sent in response - required -note- list of valid ISO 4217 codes can be found here: http://en.wikipedia.org/wiki/ISO_4217"
     metaDescription: "a simple description of this plan * optional"
-    planInterval: "Format: number DAY|WEEK|MONTH|YEAR - the interval of time between the customer being charged"
+    planInterval: "The standard ISO8601 format - PyYmMwWdDThHmMsS. Milliseconds are not present. Note that the ISO8601 standard actually indicates weeks should not be shown if any other field is present and vice versa.- the interval of time between the customer being charged"
     state: "either Active or Inactive * optional - if not present, active is assumed an inactive plan shouldn't have any new subscriptions associated with it, if the client reports one, an error will be thrown. * in the future All inactive plans will appear distinctly on the clients' dashboards."
     name: "a simple name for this plan e.g. 'Basic' * required"
     classifiers: optional List of key value pairs to classify this object.
@@ -10,13 +10,20 @@
     extCreationInstant: "Timestamp in UTC of the date of when the creation of this plan took place in the client *optional"
     extLastModifiedInstant: UTC timestamp of when it was last modified (client's reference) optional
  example: > 
-     {
-        amount: 2900,
-        currency: "BRL",
-        metaDescription: "Basic 29R plan",
-        planInterval: "1 MONTH",
-        state: "Active",
-        name: "Basic",
-        externalId: "plan#10",
-        extCreationInstant: 1426536639795
-     }
+           {
+              "amount": 10000,
+              "currency": "BRL",
+              "metaDescription": "Premium 100R plan",
+              "planInterval": "P1M",
+              "state": "ACTIVE",
+              "name": "Premium",
+              "classifiers": {
+                "type": "special pack"
+              },
+              "externalId": {
+                "externalId": "plan#12315"
+              },
+              "extCreationInstant": 1426536639795,
+              "extLastModifiedInstant": "2015-05-04T07:42:43.000+0000"
+            }
+     

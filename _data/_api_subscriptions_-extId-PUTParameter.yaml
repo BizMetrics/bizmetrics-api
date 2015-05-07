@@ -4,7 +4,7 @@
     force: " boolean - it may force the transition to take place *optional"
  example: > 
      {
-        status: "INACTIVE",
-        date: 1426536639987,
-        force: false
-     }
+      "newStatus": "CANCELLED",
+      "dateOfChange": "2015-05-07T13:47:31.213+0000",
+      "force": false
+      }

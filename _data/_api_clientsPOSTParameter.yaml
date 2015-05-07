@@ -7,16 +7,21 @@
      extCreationInstant: "Timestamp in UTC of the date and time of when the creation of this client took place in the client *optional"
      extLastModifiedInstant: UTC timestamp of when it was last modified (client's reference) optional
  example: > 
-     {
-        name: "John doe",
-        email: "jdoe@gmail.com",
-        description: "nice guy",
-        classifiers: [{"utm_source": "facebook"},
-                        {"utm_name": "April2ndCampaign"} ],
-        externalId: "client#151512",
-        extCreationInstant: 1426536639795,
-        extLastModifiedInstant: 1426536635592
-     }
+    {
+      "name": "John",
+      "email": "jdoe@asd",
+      "description": null,
+      "classifiers": {
+        "utm_name": "April2ndCampaign",
+        "utm_source": "facebook"
+      },
+      "externalId": {
+        "externalId": "22faa873-33ae-4d51-b11c-b485a77fb3b0"
+      },
+      "extCreationInstant": 1426536639795,
+      "extLastModifiedInstant": null
+    }
+
 
 
 

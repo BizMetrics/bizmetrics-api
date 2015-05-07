@@ -2,7 +2,8 @@
     amount: "in cents, *required"
     dateOfChange: "the UTC timestamp when the refund was done *required"
  example: > 
-     {
-        amount: "1000",
-        dateOfChange: 1426536639987,
-     }
+      {
+        "extId": null,
+        "amount": 5000,
+        "dateOfChange": "2015-05-07T11:57:09.657+0000"
+      }

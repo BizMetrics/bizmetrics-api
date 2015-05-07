@@ -10,22 +10,36 @@
     extCreationInstant: "Timestamp in UTC of the date of when the creation of this plan took place in the client *optional"
     extLastModifiedInstant: UTC timestamp of when it was last modified (client's reference) optional
  example: > 
-     [{
-        amount: 2900,
-        currency: "BRL",
-        metaDescription: "Basic 29R plan",
-        planInterval: "1 MONTH",
-        state: "Active",
-        name: "Basic",
-        externalId: "plan#10",
-        extCreationInstant: 1426536639795
-     }, {
-        amount: 5900,
-        currency: "BRL",
-        metaDescription: "Pro 59R plan",
-        planInterval: "1 MONTH",
-        state: "Active",
-        name: "Pro",
-        externalId: "plan#2",
-        extCreationInstant: 1426536639321
-     }]
+     [ {
+              "amount": 10000,
+              "currency": "BRL",
+              "metaDescription": "Premium 100R plan",
+              "planInterval": "P1M",
+              "state": "ACTIVE",
+              "name": "Premium",
+              "classifiers": {
+                "type": "special pack"
+              },
+              "externalId": {
+                "externalId": "plan#12315"
+              },
+              "extCreationInstant": 1426536639795,
+              "extLastModifiedInstant": "2015-05-04T07:42:43.000+0000"
+            },
+            {
+              "amount": 5900,
+              "currency": "BRL",
+              "metaDescription": "Pro 59R plan",
+              "planInterval": "P1M",
+              "state": "ACTIVE",
+              "name": "Pro",
+              "classifiers": {
+                "type": "regular"
+              },
+              "externalId": {
+                "externalId": "plan#2"
+              },
+              "extCreationInstant": 1426536689795,
+              "extLastModifiedInstant": null
+            }]
+           
